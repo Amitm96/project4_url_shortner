@@ -2,7 +2,7 @@ const validUrl = require('valid-url')
 const shortid = require('shortid')
 const Url= require('../Models/urlModel')
 
-const baseUrl = 'http:localhost:3000'
+const baseUrl = 'http://localhost:3000'
 
 
 const shortenUrl = async function(req,res){
