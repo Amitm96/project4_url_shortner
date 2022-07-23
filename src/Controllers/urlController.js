@@ -8,11 +8,12 @@ const redis = require('redis')
 const baseUrl = 'http://localhost:3000'
 
 const redisClient = redis.createClient(
-    12520,
-    "redis-12520.c264.ap-south-1-1.ec2.cloud.redislabs.com",
+    16935,
+    "redis-16935.c212.ap-south-1-1.ec2.cloud.redislabs.com",
     { no_ready_check: true }
   );
-  redisClient.auth("AP8turZ2WJZedPztV39T3jDOIJEpAWwf", function (err) {
+
+  redisClient.auth("1mA4Lg6PeBM82VVR7WIbybb3ZWsfHTjB", function (err) {
     if (err) throw err;
   });
   
@@ -72,13 +73,14 @@ const shortenUrl = async function (req, res) {
 const getUrlCode = async function (req, res) {
     try {
         // find a document match to the code in req.params.code
+        if(!shortid.isValid(req.params.urlCode)) return res.status(400).send({status: false , message: "please provide valid urlcode"})
         let cachedUrl = await GET_ASYNC(`${req.params.urlCode}`)
         if(cachedUrl)    return res.status(302).redirect(cachedUrl)
         const url = await Url.findOne({
             urlCode: req.params.urlCode
         })
         if (url) {
-            await SET_ASYNC(`${req.params.urlCode}`, JSON.stringify(url.longUrl))
+            await SET_ASYNC(`${req.params.urlCode}`, url.longUrl)
             return res.status(302).redirect(url.longUrl)
         } else {
             return res.status(404).send({ status: false, message: 'No URL Found' })
