@@ -5,7 +5,7 @@ const { promisify } = require("util");
 const redis = require('redis')
 
 
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'https://shorturlbyamit.herokuapp.com'
 
 const redisClient = redis.createClient(
     16935,

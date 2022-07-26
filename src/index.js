@@ -7,7 +7,7 @@ const  mongoose = require('mongoose');
 const app = express()
 app.use(bodyParser.json()); 
    
-mongoose.connect("mongodb+srv://mn-pandey:9219591303Am%40n@cluster0.mov0c.mongodb.net/group55Database")
+mongoose.connect("mongodb+srv://Amitmaz96:FuYghhKoFzigilxK@cluster1.mdpsbcj.mongodb.net/urlDb")
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 
