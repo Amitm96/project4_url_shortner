@@ -63,7 +63,7 @@
         shortbtn.addEventListener('click', shortUrl)
 
         function shortUrl() {
-            let url = 'http://localhost:3000/url/shorten'
+            let url = 'https://shorturlbyamit.herokuapp.com/url/shorten'
             let longurl = document.getElementById('longurl').value
             fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ "longUrl": longurl }) },).then((res) => res.json()).then((Data) => {
                 if (Data.status == true) {
